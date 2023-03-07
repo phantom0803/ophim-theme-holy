@@ -97,7 +97,7 @@
                         aspectratio: "16:9",
                         width: "100%",
                         height: "100%",
-                        file: "/themes/kiss/player/1s_blank.mp4",
+                        file: "/themes/holy/player/1s_blank.mp4",
                         volume: 100,
                         mute: false,
                         autostart: true,
