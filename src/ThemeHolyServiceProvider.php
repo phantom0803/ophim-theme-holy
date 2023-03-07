@@ -31,30 +31,18 @@ class ThemeHolyServiceProvider extends ServiceProvider
                 'preview_image' => '',
                 'options' => [
                     [
-                        'name' => 'recommendations_limit',
-                        'label' => 'Recommendations Limit',
-                        'type' => 'number',
-                        'hint' => 'Number',
-                        'value' => 10,
-                        'tab' => 'List'
-                    ],
-                    [
                         'name' => 'latest',
                         'label' => 'Home Page',
                         'type' => 'code',
-                        'hint' => 'display_label|relation|find_by_field|value|limit|show_more_url|show_template (slider_poster|slider_thumb|section_poster|section_thumb)',
-                        'value' => "Phim bộ mới||type|series|12|/danh-sach/phim-bo|section_thumb\r\nPhim lẻ mới||type|single|12|/danh-sach/phim-bo|section_poster\r\nPhim lẻ mới||type|single|10|/danh-sach/phim-bo|slider_thumb\r\nPhim lẻ mới||type|single|10|/danh-sach/phim-bo|slider_poster",
-                        'attributes' => [
-                            'rows' => 5
-                        ],
-                        'tab' => 'List'
-                    ],
-                    [
-                        'name' => 'hotest',
-                        'label' => 'Danh sách hot',
-                        'type' => 'code',
-                        'hint' => 'Label|relation|find_by_field|value|sort_by_field|sort_algo|limit|show_template (top_text|top_thumb)',
-                        'value' => "Top phim lẻ||type|single|view_total|desc|9|top_text\r\nTop phim bộ||type|series|view_total|desc|9|top_thumb",
+                        'hint' => 'display_label|display_description|relation|find_by_field|value|sort_by_field|sort_algo|limit|show_more_url',
+                        'value' => <<<EOT
+                        Phim đề cử|Những bộ phim đang được quan tâm nhiều nhất||is_recommended|1|updated_at|desc|20|#
+                        Phim chiếu rạp mới|Tổng hợp phim chiếu rạp vietsub||is_shown_in_theater|1|created_at|desc|10|/danh-sach/phim-chieu-rap
+                        Phim bộ mới|Phim bộ mới cập nhật||type|series|updated_at|desc|10|/danh-sach/phim-bo
+                        Phim lẻ mới|Phim lẻ mới cập nhật||type|single|updated_at|desc|10|/danh-sach/phim-le
+                        Phim hoạt hình mới|Phim hoạt hình mới cập nhật|categories|slug|hoat-hinh|updated_at|desc|10|/the-loai/hoat-hinh
+                        Top phim|Những phim được xem nhiều nhất||is_copyright|0|view_week|desc|10|#
+                        EOT,
                         'attributes' => [
                             'rows' => 5
                         ],
@@ -71,7 +59,7 @@ class ThemeHolyServiceProvider extends ServiceProvider
                         'name' => 'body_attributes',
                         'label' => 'Body attributes',
                         'type' => 'text',
-                        'value' => "class='bg-main-900 text-gray-300 font-montserrat leading-normal tracking-normal'",
+                        'value' => 'style="color: rgb(33, 37, 41); background: rgb(20,20,20); font-family: Kodchasan, sans-serif;"',
                         'tab' => 'Custom CSS'
                     ],
                     [
@@ -100,46 +88,11 @@ class ThemeHolyServiceProvider extends ServiceProvider
                         'label' => 'Footer',
                         'type' => 'code',
                         'value' => <<<EOT
-                        <div class="w-full mx-auto flex flex-wrap">
-                            <div class="flex w-full lg:w-3/5">
-                                <div class="px-2">
-                                    <span class="font-bold text-gray-100">Giới Thiệu</span>
-                                    <p class="text-gray-300 text-sm pt-3">
-                                        <b>OPHIMCMS</b> - Website xem phim online miễn phí.
-                                    </p>
-                                    <p class="text-gray-300 text-sm">Với giao diện trực quan, thuận tiện, tốc độ tải nhanh, ít quảng cáo
-                                        hứa
-                                        hẹn sẽ đem lại những trải nghiệm tốt cho người xem.</p>
-                                </div>
+                        <footer class="page-footer dark" style="background: rgb(20,20,20);">
+                            <div class="text-uppercase footer-copyright" style="background: rgba(20,20,20,0.07);border-style: none;">
+                                <p><strong>Elune Media Team 2021</strong></p>
                             </div>
-                            <div class="flex w-1/3 lg:w-1/5">
-                                <div class="px-2">
-                                    <span class="font-bold text-gray-100">Kết Nối</span>
-                                    <ul class="list-reset items-center text-sm pt-3">
-                                        <li>
-                                            <a class="inline-block text-gray-50 no-underline hover:text-main-primary hover:text-underline py-1"
-                                                href="#">
-                                                FanPage
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="inline-block text-gray-50 no-underline hover:text-main-primary hover:text-underline py-1"
-                                                href="#">
-                                                Group
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="flex w-2/3 lg:w-1/5">
-                                <div class="px-2">
-                                    <span class="font-bold text-gray-100">Liên hệ</span>
-                                    <ul class="list-reset items-center text-sm pt-3">
-                                        <li class="text-gray-300">email@gmail.com</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                        </footer>
                         EOT,
                         'tab' => 'Custom HTML'
                     ],
