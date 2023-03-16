@@ -50,7 +50,7 @@
         });
     </script>
     <script defer src="{{ asset('/themes/holy/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js" integrity="sha512-4E202psbZszCpkybu3LZGLZk1Yfi7Mv8AhTzXzyJQ7lDKdXGC0ZJ+39q+PwBjEa9QbEzFyraZ0uab0nnhJ3fNg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{ asset('/themes/holy/js/script.min.js') }}"></script>
     {!! setting('site_scripts_google_analytics') !!}
 @endsection
