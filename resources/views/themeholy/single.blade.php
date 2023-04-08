@@ -18,7 +18,7 @@
 
 @section('content')
     <section class="clean-block clean-hero"
-        style="color: rgba(20,20,20,0.85);background: url({{ $currentMovie->poster_url ?: $currentMovie->thumb_url }}) center/cover no-repeat;margin-top: -28vh;filter: blur(0px);">
+        style="color: rgba(20,20,20,0.85);background: url({{ $currentMovie->getPosterUrl() }}) center/cover no-repeat;margin-top: -28vh;filter: blur(0px);">
         <div class="text" style="margin-top: 20vh;width: 80vw;max-width: 1280px;height: auto;">
             <h1 style="font-size: calc(1.325rem + 0.9vw);color: rgb(240,190,8);">{{ $currentMovie->name }}
                 ({{ $currentMovie->publish_year }})</h1>

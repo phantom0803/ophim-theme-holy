@@ -31,6 +31,26 @@ class ThemeHolyServiceProvider extends ServiceProvider
                 'preview_image' => '',
                 'options' => [
                     [
+                        'name' => 'per_page_limit',
+                        'label' => 'Pages limit',
+                        'type' => 'number',
+                        'value' => 20,
+                        'wrapperAttributes' => [
+                            'class' => 'form-group col-md-6',
+                        ],
+                        'tab' => 'List'
+                    ],
+                    [
+                        'name' => 'movie_related_limit',
+                        'label' => 'Movies related limit',
+                        'type' => 'number',
+                        'value' => 10,
+                        'wrapperAttributes' => [
+                            'class' => 'form-group col-md-6',
+                        ],
+                        'tab' => 'List'
+                    ],
+                    [
                         'name' => 'latest',
                         'label' => 'Home Page',
                         'type' => 'code',

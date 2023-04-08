@@ -15,14 +15,40 @@ Route::group([
     ),
 ], function () {
     Route::get('/', [ThemeHolyController::class, 'index']);
-    Route::get(sprintf('/%s/{category}', config('ophim.routes.category', 'the-loai')), [ThemeHolyController::class, 'getMovieOfCategory'])->name('categories.movies.index');
-    Route::get(sprintf('/%s/{actor}', config('ophim.routes.actors', 'dien-vien')), [ThemeHolyController::class, 'getMovieOfActor'])->name('actors.movies.index');
-    Route::get(sprintf('/%s/{director}', config('ophim.routes.directors', 'dao-dien')), [ThemeHolyController::class, 'getMovieOfDirector'])->name('directors.movies.index');
-    Route::get(sprintf('/%s/{tag}', config('ophim.routes.tags', 'tu-khoa')), [ThemeHolyController::class, 'getMovieOfTag'])->name('tags.movies.index');
-    Route::get(sprintf('/%s/{region}', config('ophim.routes.region', 'quoc-gia')), [ThemeHolyController::class, 'getMovieOfRegion'])->name('regions.movies.index');
-    Route::get(sprintf('/%s/{type}', config('ophim.routes.types', 'danh-sach')), [ThemeHolyController::class, 'getMovieOfType'])->name('types.movies.index');
-    Route::get(sprintf('/%s/{movie}', config('ophim.routes.movie', 'phim')), [ThemeHolyController::class, 'getMovieOverview'])->name('movies.show');
-    Route::get(sprintf('/%s/{movie}/{episode}', config('ophim.routes.movie', 'phim')), [ThemeHolyController::class, 'getEpisode'])->name('episodes.show');
+
+    Route::get(setting('site_routes_category', '/the-loai/{category}'), [ThemeHolyController::class, 'getMovieOfCategory'])
+        ->where(['category' => '.+', 'id' => '[0-9]+'])
+        ->name('categories.movies.index');
+
+    Route::get(setting('site_routes_region', '/quoc-gia/{region}'), [ThemeHolyController::class, 'getMovieOfRegion'])
+        ->where(['region' => '.+', 'id' => '[0-9]+'])
+        ->name('regions.movies.index');
+
+    Route::get(setting('site_routes_tag', '/tu-khoa/{tag}'), [ThemeHolyController::class, 'getMovieOfTag'])
+        ->where(['tag' => '.+', 'id' => '[0-9]+'])
+        ->name('tags.movies.index');
+
+    Route::get(setting('site_routes_types', '/danh-sach/{type}'), [ThemeHolyController::class, 'getMovieOfType'])
+        ->where(['type' => '.+', 'id' => '[0-9]+'])
+        ->name('types.movies.index');
+
+    Route::get(setting('site_routes_actors', '/dien-vien/{actor}'), [ThemeHolyController::class, 'getMovieOfActor'])
+        ->where(['actor' => '.+', 'id' => '[0-9]+'])
+        ->name('actors.movies.index');
+
+    Route::get(setting('site_routes_directors', '/dao-dien/{director}'), [ThemeHolyController::class, 'getMovieOfDirector'])
+        ->where(['director' => '.+', 'id' => '[0-9]+'])
+        ->name('directors.movies.index');
+
+    Route::get(setting('site_routes_episode', '/phim/{movie}/{episode}-{id}'), [ThemeHolyController::class, 'getEpisode'])
+        ->where(['movie' => '.+', 'movie_id' => '[0-9]+', 'episode' => '.+', 'id' => '[0-9]+'])
+        ->name('episodes.show');
+
     Route::post(sprintf('/%s/{movie}/{episode}/report', config('ophim.routes.movie', 'phim')), [ThemeHolyController::class, 'reportEpisode'])->name('episodes.report');
     Route::post(sprintf('/%s/{movie}/rate', config('ophim.routes.movie', 'phim')), [ThemeHolyController::class, 'rateMovie'])->name('movie.rating');
+
+    Route::get(setting('site_routes_movie', '/phim/{movie}'), [ThemeHolyController::class, 'getMovieOverview'])
+        ->where(['movie' => '.+', 'id' => '[0-9]+'])
+        ->name('movies.show');
+
 });

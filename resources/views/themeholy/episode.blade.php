@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="clean-block clean-hero"
-        style="color: rgba(20,20,20,0.85);background: url({{ $currentMovie->poster_url ?: $currentMovie->thumb_url }}) center / cover no-repeat;margin-top: -28vh;filter: blur(0px);margin-bottom: 0px;">
+        style="color: rgba(20,20,20,0.85);background: url({{ $currentMovie->getPosterUrl() }}) center / cover no-repeat;margin-top: -28vh;filter: blur(0px);margin-bottom: 0px;">
         <div class="media-player text" id="pembed">
             <p style="text-align: center;">Đang tải, đợi tí nhé ...</p>
         </div>
@@ -148,7 +148,7 @@
                     aspectratio: "16:9",
                     width: "100%",
                     height: "100%",
-                    image: "{{ $currentMovie->poster_url ?: $currentMovie->thumb_url }}",
+                    image: "{{ $currentMovie->getPosterUrl() }}",
                     file: link,
                     playbackRateControls: true,
                     playbackRates: [0.25, 0.75, 1, 1.25],
